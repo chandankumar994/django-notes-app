@@ -1,16 +1,16 @@
-pipeline {
-    agent any 
+pipeline{
+    agent any
     
     stages{
-        stage("Clone Code"){
-            steps {
+        stage("Code"){
+            steps{
                 echo "Cloning the code"
-                git url:"https://github.com/LondheShubham153/django-notes-app.git", branch: "main"
+                git url:"https://github.com/chandankumar994/django-notes-app.git", branch: "main"
             }
         }
         stage("Build"){
-            steps {
-                echo "Building the image"
+             steps{
+                echo "Building the code"
                 sh "docker build -t my-note-app ."
             }
         }
@@ -25,11 +25,11 @@ pipeline {
             }
         }
         stage("Deploy"){
-            steps {
-                echo "Deploying the container"
-                sh "docker-compose down && docker-compose up -d"
-                
+             steps{
+               echo "Deploying the container"
+               sh "docker-compose down && docker-compose up -d"
             }
         }
     }
 }
+
